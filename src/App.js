@@ -4,6 +4,8 @@ import store from './store'
 import logo from './logo.svg';
 import './App.css';
 
+import { view as TodoList } from './components/TodoList/'
+
 class App extends Component {
   render() {
     return (
@@ -15,8 +17,9 @@ class App extends Component {
               <h2>React todo demo</h2>
             </div>
           </div>
-          <div class="todo-app">
+          <div className="todo-app">
             <h1 style={{display: 'none'}}>todo demo</h1>
+            <TodoList />
           </div>
         </div>
       </Provider>
