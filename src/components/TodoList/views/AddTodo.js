@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 class AddTodo extends Component {
   static propTypes = {
-    onHandleInput: PropTypes.func.isRequired,
+    onAdd: PropTypes.func.isRequired,
   }
 
   constructor() {
@@ -24,7 +24,7 @@ class AddTodo extends Component {
   onHandleClick(e) {
     e.preventDefault()
     const { inputValue } = this.state
-    this.props.onHandleInput(inputValue)
+    this.props.onAdd(inputValue)
     // alert(inputValue)
   }
 

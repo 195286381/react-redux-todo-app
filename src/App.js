@@ -5,6 +5,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import { view as TodoList } from './components/TodoList/'
+import { view as Filter } from './components/Filter'
 
 class App extends Component {
   render() {
@@ -19,7 +20,9 @@ class App extends Component {
           </div>
           <div className="todo-app">
             <h1 style={{display: 'none'}}>todo demo</h1>
+            <Filter />
             <TodoList />
+            
           </div>
         </div>
       </Provider>

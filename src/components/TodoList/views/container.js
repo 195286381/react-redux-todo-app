@@ -9,6 +9,7 @@ import { removeItem, toggleItem, addItem } from '../actions'
 
 const Component = ({items, onToggleTodo, onRemoveTodo, onAddTodo}) => (
   <div>
+    <AddTodo onAdd={onAddTodo}/>
     <ul className="todo-list">
       {
         items.map(item => {
@@ -25,7 +26,6 @@ const Component = ({items, onToggleTodo, onRemoveTodo, onAddTodo}) => (
         })
       }
     </ul>
-    <AddTodo onHandleInput={onAddTodo}/>
   </div>
 )
 
@@ -33,9 +33,20 @@ Component.propTypes = {
   items: PropTypes.array.isRequired,
 }
 
+const selectItems = (items, filter) => {
+  if (filter === 'all') {
+    return items
+  } else if (filter === 'completed') {
+    return items.filter(item => item.complete === false)
+  } else {
+    return items.filter(item => item.complete === true)
+  }
+}
+
 const mapStateToProps = (state, ownProps) => {
+  const { todoList, filter } = state
   return {
-    items: state.todoList
+    items: selectItems(todoList, filter),
   }
 }
 const mapDispatchToProps = (dispatch) => bindActionCreators({
@@ -43,11 +54,5 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   onRemoveTodo: removeItem,
   onAddTodo: addItem,
 }, dispatch)
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     onAddTodo: (text) => {dispatch(addItem(text))},
-//   }
-// }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component)
