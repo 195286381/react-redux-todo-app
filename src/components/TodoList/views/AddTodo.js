@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-
+import PropTypes from 'prop-types'
 class AddTodo extends Component {
   static propTypes = {
-
+    onHandleInput: PropTypes.func.isRequired,
   }
 
   constructor() {
@@ -12,6 +12,7 @@ class AddTodo extends Component {
     }
 
     this.onHandleInputChange = this.onHandleInputChange.bind(this)
+    this.onHandleClick = this.onHandleClick.bind(this)
   }
 
   onHandleInputChange(e) {
@@ -20,14 +21,21 @@ class AddTodo extends Component {
     })
   }
 
+  onHandleClick(e) {
+    e.preventDefault()
+    const { inputValue } = this.state
+    this.props.onHandleInput(inputValue)
+    // alert(inputValue)
+  }
+
   render() {
     const { } = this.props
 
     return (
       <div>
         <form>
-          <input type="text" value={this.state.inputValue} onChange={this.onHandleInputChange}/>
-          <button>添加</button>
+          <input type="text" value={this.state.inputValue} onChange={this.onHandleInputChange} placeholder="请输入内容" />
+          <button onClick={this.onHandleClick}>添加</button>
         </form>
       </div>
     )

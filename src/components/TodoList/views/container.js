@@ -2,11 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import './index.css'
 import TodoItem from './TodoItem'
 import AddTodo from './AddTodo'
-import {removeItem, toggleItem} from '../actions'
+import { removeItem, toggleItem, addItem } from '../actions'
 
-const Component = ({items, onToggleTodo, onRemoveTodo}) => (
+const Component = ({items, onToggleTodo, onRemoveTodo, onAddTodo}) => (
   <div>
     <ul className="todo-list">
       {
@@ -15,7 +16,7 @@ const Component = ({items, onToggleTodo, onRemoveTodo}) => (
           return (
             <TodoItem
               key={id}
-              complete={complete}
+              completed={complete}
               content={content}
               onToggle={() => onToggleTodo(id)}
               onRemove={() => onRemoveTodo(id)}
@@ -24,7 +25,7 @@ const Component = ({items, onToggleTodo, onRemoveTodo}) => (
         })
       }
     </ul>
-    <AddTodo />
+    <AddTodo onHandleInput={onAddTodo}/>
   </div>
 )
 
@@ -40,6 +41,13 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   onToggleTodo: toggleItem,
   onRemoveTodo: removeItem,
-})
+  onAddTodo: addItem,
+}, dispatch)
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     onAddTodo: (text) => {dispatch(addItem(text))},
+//   }
+// }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component)
