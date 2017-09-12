@@ -8,7 +8,7 @@ const Link = ({active, children, onClick}) => {
     return <b className="filter selected">{children}</b>;
   } else {
     return (
-      <a href="#" className="filter not-selected" onClick={(ev) => {
+      <a href="123" className="filter not-selected" onClick={(ev) => {
         ev.preventDefault();
         onClick();
       }}>
@@ -21,12 +21,12 @@ const Link = ({active, children, onClick}) => {
 Link.propTypes = {
   active: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    active: state.filter === ownProps.filter
+    active: state.filter === ownProps.filter,
   }
 };
 

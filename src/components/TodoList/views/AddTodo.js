@@ -24,13 +24,13 @@ class AddTodo extends Component {
   onHandleClick(e) {
     e.preventDefault()
     const { inputValue } = this.state
+    if (inputValue.trim() === '') return
     this.props.onAdd(inputValue)
+    this.setState({inputValue: ''})
     // alert(inputValue)
   }
 
   render() {
-    const { } = this.props
-
     return (
       <div>
         <form>

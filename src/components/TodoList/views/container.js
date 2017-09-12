@@ -37,9 +37,9 @@ const selectItems = (items, filter) => {
   if (filter === 'all') {
     return items
   } else if (filter === 'completed') {
-    return items.filter(item => item.complete === false)
-  } else {
     return items.filter(item => item.complete === true)
+  } else {
+    return items.filter(item => item.complete === false)
   }
 }
 
